@@ -1,0 +1,54 @@
+[project]
+name = "dfw-business-intelligence-hub"
+version = "0.1.0"
+description = "Plataforma de inteligencia de mercado geolocalizada para DFW. Pipeline de datos públicos en arquitectura medallón."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+authors = [
+    { name = "Daniel Ostos", email = "danielostos1999@gmail.com" }
+]
+keywords = ["data-engineering", "dfw", "permits", "real-estate", "etl", "medallion"]
+
+# Dependencias mínimas para Semana 1.
+# Cada nueva tecnología del roadmap se agrega cuando entra a su fase, no antes.
+dependencies = [
+    "playwright>=1.48",       # Web scraping (Semana 1)
+    "httpx>=0.27",            # HTTP client por si Grapevine tiene endpoint JSON
+    "python-dateutil>=2.9",   # Parsing de fechas
+]
+
+[project.urls]
+Repository = "https://github.com/danielostos/dfw-business-intelligence-hub"
+Roadmap = "https://github.com/danielostos/dfw-business-intelligence-hub/blob/main/ROADMAP.md"
+
+# =============================================================================
+# Dev dependencies (separadas para que `uv sync --no-dev` sea slim en CI)
+# =============================================================================
+[dependency-groups]
+dev = [
+    "ipython>=8.27",
+    "rich>=13.9",             # Output bonito en terminal
+]
+
+# =============================================================================
+# Build system
+# =============================================================================
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+# =============================================================================
+# uv configuration
+# =============================================================================
+[tool.uv]
+# Pinea Python 3.12 (lo instalamos con `uv python install 3.12`)
+python-preference = "managed"
+
+# =============================================================================
+# Placeholders para tooling de Semana 4 (ruff, mypy, pytest)
+# Los configuramos cuando llegue su semana — NO ahora.
+# =============================================================================
